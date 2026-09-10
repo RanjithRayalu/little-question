@@ -11,7 +11,7 @@ let noClicks = 0;
 const times = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM'];
 
 function handleYesClick() {
-  question.textContent = 'Yay, Praghnya! Pick our Sunday time:';
+  question.textContent = 'Yay, Praghnya! Which Sunday moment feels right?';
   gif.src = 'https://media.giphy.com/media/UMon0fuimoAN9ueUNP/giphy.gif';
   noBtn.remove();
 
@@ -27,7 +27,7 @@ function handleYesClick() {
 }
 
 function chooseTime(time, timeChoices) {
-  question.textContent = `It's a date, Praghnya! See you Sunday at ${time} ♡`;
+  question.textContent = `It’s a date, Praghnya! See you Sunday at ${time} ♡`;
   gif.src = 'https://media.giphy.com/media/UMon0fuimoAN9ueUNP/giphy.gif';
   timeChoices.remove();
   notifySlotSelection(time);
@@ -50,14 +50,14 @@ function notifySlotSelection(time) {
 function handleNoClick() {
   noClicks += 1;
   if (noClicks === 1) {
-    question.textContent = 'Please say yes, Praghnya 🥺';
-    yesBtn.textContent = 'Yes';
-    noBtn.textContent = 'No';
+    question.textContent = 'Are you sure? I was really hoping for a yes 🥺';
+    yesBtn.textContent = 'Okay, yes ♡';
+    noBtn.textContent = 'Hmm… no';
     return;
   }
 
-  question.textContent = 'Praghnya, you have no choice 😌';
-  yesBtn.textContent = 'Yes ♡';
+  question.textContent = 'One last tiny question… will you give this Sunday a chance? ✨';
+  yesBtn.textContent = 'Yes, let’s do it ♡';
   noBtn.remove();
 }
 
