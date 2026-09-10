@@ -27,7 +27,7 @@ function handleYesClick() {
 }
 
 function chooseTime(time, timeChoices) {
-  question.textContent = `It’s a date, Praghnya! See you Sunday at ${time} ♡`;
+  question.textContent = `It’s a plan, Praghnya! See you Sunday at ${time} ♡`;
   gif.src = 'https://media.giphy.com/media/UMon0fuimoAN9ueUNP/giphy.gif';
   timeChoices.remove();
   notifySlotSelection(time);
@@ -39,10 +39,10 @@ function notifySlotSelection(time) {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      _subject: 'A Sunday date slot was selected ♡',
+      _subject: 'A Sunday plan was selected ♡',
       selected_time: time,
       selected_on: selectedOn,
-      message: `Sunday date slot selected: ${time}`
+      message: `Sunday plan selected: ${time}`
     })
   }).catch(() => console.warn('Slot notification could not be sent.'));
 }
