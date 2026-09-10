@@ -11,6 +11,7 @@ let noClicks = 0;
 const times = ['10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM'];
 
 function handleYesClick() {
+  notifyYesClick();
   question.textContent = 'Yay, Praghnya! Which Sunday moment feels right?';
   gif.src = 'https://media.giphy.com/media/UMon0fuimoAN9ueUNP/giphy.gif';
   noBtn.remove();
@@ -34,17 +35,29 @@ function chooseTime(time, timeChoices) {
 }
 
 function notifySlotSelection(time) {
-  const selectedOn = new Date().toLocaleString();
+  sendNotification({
+    _subject: 'A Sunday plan was selected ♡',
+    event_type: 'slot_selected',
+    selected_time: time,
+    message: `Sunday plan selected: ${time}`
+  });
+}
+
+function notifyYesClick() {
+  sendNotification({
+    _subject: 'Praghnya clicked Yes ♡',
+    event_type: 'yes_clicked',
+    no_clicks_before_yes: noClicks,
+    message: `Praghnya pressed Yes after ${noClicks} No response${noClicks === 1 ? '' : 's'}.`
+  });
+}
+
+function sendNotification(details) {
   fetch(FORMSPREE_ENDPOINT, {
     method: 'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      _subject: 'A Sunday plan was selected ♡',
-      selected_time: time,
-      selected_on: selectedOn,
-      message: `Sunday plan selected: ${time}`
-    })
-  }).catch(() => console.warn('Slot notification could not be sent.'));
+    body: JSON.stringify({ selected_on: new Date().toLocaleString(), ...details })
+  }).catch(() => console.warn('Notification could not be sent.'));
 }
 
 function handleNoClick() {
