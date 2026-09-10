@@ -56,7 +56,7 @@ function handleNoClick() {
     return;
   }
 
-  question.textContent = 'One last tiny question… will you give this Sunday a chance? ✨';
+  question.textContent = 'You have no choice 😌';
   yesBtn.textContent = 'Yes, let’s do it ♡';
   noBtn.remove();
 }
